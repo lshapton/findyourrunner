@@ -38,14 +38,28 @@ findRunner.loadMap = function(lat, lng) {
 
 }; 
 
+findRunner.loadRunners = function(lat, lng) {
+
+  var runner = new google.maps.Marker({
+    position: new google.maps.LatLng(lat, lng),
+    map: findRunner.map, // notice how we pass it the map we made earlier? This is how it knows which map to put the marker on
+    icon : 'http://labs.google.com/ridefinder/images/mm_20_purple.png'
+  });
+  
+
+}
+
+
 
 $(function() {
   // Runner's position
   navigator.geolocation.getCurrentPosition(function(position) {
     findRunner.loadMap(position.coords.latitude, position.coords.longitude);
+    findRunner.loadRunners(position.coords.latitude, position.coords.longitude);
     }, 
     function(err){
       alert('there is an error');
   });
+
 }); // end doc ready
 
