@@ -1,5 +1,5 @@
 class RunnersController < ApplicationController
-  before_action :set_runner, only: [:edit, :update, :destroy]
+  before_action :set_runner, only: [:edit, :show, :destroy]
 
   # GET /runners
   # GET /runners.json
@@ -40,6 +40,16 @@ class RunnersController < ApplicationController
   # PATCH/PUT /runners/1
   # PATCH/PUT /runners/1.json
   def update
+
+    if params[:latitude]
+      @runner = Runner.find(1)
+      @runner.latitude = params[:latitude]
+      @runner.longitude = params[:longitude]
+      @runner.save
+      Rails.logger.info(@runner.errors.inspect)
+      return
+
+    end 
     respond_to do |format|
       if @runner.update(runner_params)
         format.html { redirect_to @runner, notice: 'Runner was successfully updated.' }
@@ -69,6 +79,6 @@ class RunnersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def runner_params
-      params[:runner]
+      params.require(:runner).permit(:first_name, :last_name, :longitude, :latitude)
     end
 end
