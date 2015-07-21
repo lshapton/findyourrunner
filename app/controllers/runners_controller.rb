@@ -47,6 +47,7 @@ class RunnersController < ApplicationController
       @runner.longitude = params[:longitude]
       @runner.save
       Rails.logger.info(@runner.errors.inspect)
+      render map_js
       return
 
     end 
