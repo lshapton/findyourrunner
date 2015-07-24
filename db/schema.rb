@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720233642) do
+ActiveRecord::Schema.define(version: 20150723001911) do
 
   create_table "runners", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150720233642) do
     t.string   "last_name"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "icon_url"
   end
 
   create_table "users", force: :cascade do |t|

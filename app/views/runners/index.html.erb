@@ -1,25 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div id="show-map">
 
-<h1>Listing Runners</h1>
+    <script>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      $(function() {
 
-  <tbody>
-    <% @runners.each do |runner| %>
-      <tr>
-        <td><%= link_to 'Show', runner %></td>
-        <td><%= link_to 'Edit', edit_runner_path(runner) %></td>
-        <td><%= link_to 'Destroy', runner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      	var showRunnerLocation = setInterval(function() {
+      		findRunner.loadRunners("<%= @runner.latitude %>", "<%= @runner.longitude %>", "<%= @runner.icon_url %> ");     
+      		console.log("showed runners locations");
+      	}, 300000);
 
-<br>
+      	console.log("reload map")
 
-<%= link_to 'New Runner', new_runner_path %>
+      });
+
+    </script>
+
+
+  <%= render 'map' %>
+
+</div>

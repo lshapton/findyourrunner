@@ -56,5 +56,5 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  root to: "runners#show"
+  root to: "runners#index"
 end

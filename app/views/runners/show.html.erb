@@ -1,3 +1,29 @@
 <div id="show-map">
- <%= render 'map' %> 
+  <script>
+
+  $(function() {
+    // Update runner's position every 5 min
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+
+      var getRunnerLocation = setInterval(function() {
+          $.ajax({
+              url: '/runners/1',
+              type: "put",
+              dataType: "script",
+              data: { 
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                _method: 'put'
+              }
+          });
+          console.log("saved runners locations");
+      }, 300000);
+
+    });
+
+  });
+    
+  </script>
+  <%= render 'map' %>
 </div>

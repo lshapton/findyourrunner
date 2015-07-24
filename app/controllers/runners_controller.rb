@@ -1,10 +1,11 @@
 class RunnersController < ApplicationController
-  before_action :set_runner, only: [:edit, :show, :destroy]
+  before_action :set_runner, only: [:edit, :destroy]
 
   # GET /runners
   # GET /runners.json
   def index
     @runners = Runner.all
+    @runner = Runner.find(1)
   end
 
   # GET /runners/1
@@ -47,7 +48,7 @@ class RunnersController < ApplicationController
       @runner.longitude = params[:longitude]
       @runner.save
       Rails.logger.info(@runner.errors.inspect)
-      render map_js
+      render :map_js
       return
 
     end 
