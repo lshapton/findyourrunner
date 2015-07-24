@@ -25,7 +25,7 @@ findRunner.loadMap = function(lat, lng) {
 
   var mapOptions = {
     center: { lat: lat, lng: lng},
-    zoom: 15,
+    zoom: 10,
     styles: mapStyle
   };
 
@@ -55,7 +55,7 @@ findRunner.loadRunners = function(lat, lng, icon_url) {
 
 $(function() {
 
-  findRunner.loadMap(43.648235899999996, -79.39783969999999); 
+  findRunner.loadMap(43.2933176, -81.7194497); 
 
 });
 
