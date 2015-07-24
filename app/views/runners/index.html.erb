@@ -4,6 +4,8 @@
 
       $(function() {
 
+      	findRunner.loadRunners("<%= @runner.latitude %>", "<%= @runner.longitude %>", "<%= @runner.icon_url %> "); 
+
       	var showRunnerLocation = setInterval(function() {
       		findRunner.loadRunners("<%= @runner.latitude %>", "<%= @runner.longitude %>", "<%= @runner.icon_url %> ");     
       		console.log("showed runners locations");
