@@ -1,23 +1,22 @@
 <div id="show-map">
 
-    <script>
-
-      $(function() {
-
-      	findRunner.loadRunners("<%= @runner.latitude %>", "<%= @runner.longitude %>", "<%= @runner.icon_url %> "); 
-
-      	var showRunnerLocation = setInterval(function() {
-      		findRunner.loadRunners("<%= @runner.latitude %>", "<%= @runner.longitude %>", "<%= @runner.icon_url %> ");     
-      		console.log("showed runners locations");
-      	}, 300000);
-
-      	console.log("reload map")
-
-      });
-
-    </script>
-
-
   <%= render 'map' %>
 
 </div>
+
+<script>
+
+  $(function() {
+
+    findRunner.loadRunners("<%= @runner.latitude %>", "<%= @runner.longitude %>", "<%= @runner.icon_url %> "); 
+
+    var showRunnerLocation = setInterval(function() {
+      findRunner.loadRunners("<%= @runner.latitude %>", "<%= @runner.longitude %>", "<%= @runner.icon_url %> ");     
+      console.log("showed runners locations");
+    }, 1000000);
+
+    console.log("reload map");
+
+  });
+
+</script>

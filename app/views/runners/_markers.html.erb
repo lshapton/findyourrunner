@@ -1,0 +1,24 @@
+<div class="markers">
+  <script>
+    $(function() {
+
+      runner = new google.maps.Marker({
+        position: new google.maps.LatLng(43.010922699999995, -81.2654623),
+        map: findRunner.map, // notice how we pass it the map we made earlier? This is how it knows which map to put the marker on
+        icon : "http://labs.google.com/ridefinder/images/mm_20_purple.png",
+        title: 'Hello World!'
+      });
+
+      var reloadRunnerMarkers = setInterval(function(){
+
+       var lat = "<%= @runner.latitude%>";
+       var lng = "<%= @runner.longitude%>";
+       var newLatLng = new google.maps.LatLng(lat, lng);
+       runner.setPosition(newLatLng);
+
+      }, 10000);
+    });
+
+  </script>
+</div>
+

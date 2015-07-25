@@ -11,6 +11,7 @@ class RunnersController < ApplicationController
   # GET /runners/1
   # GET /runners/1.json
   def show
+    @runner = Runner.find(1)
   end
 
   # GET /runners/new
@@ -48,7 +49,7 @@ class RunnersController < ApplicationController
       @runner.longitude = params[:longitude]
       @runner.save
       Rails.logger.info(@runner.errors.inspect)
-      render :map_js
+      render :markers_js
       return
 
     end 

@@ -40,7 +40,7 @@ findRunner.loadMap = function(lat, lng) {
 findRunner.loadRunners = function(lat, lng, icon_url) {
 
 
-  var runner = new google.maps.Marker({
+  findRunner.runner = new google.maps.Marker({
     position: new google.maps.LatLng(lat, lng),
     map: findRunner.map, // notice how we pass it the map we made earlier? This is how it knows which map to put the marker on
     icon : icon_url,
