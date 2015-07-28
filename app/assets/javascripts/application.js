@@ -52,7 +52,7 @@ findRunner.markers = [];
 
 $(function() {
 
-  findRunner.loadMap(43.2933176, -81.7194497); 
+  findRunner.loadMap(42.2300617, -71.5173332); 
 
 });
 

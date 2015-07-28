@@ -43,13 +43,15 @@ setTimeout(function(){
 	  type: "put",
 	  dataType: "script",
 	  data: { 
-	    latitude: "<%= Runner.find(1).latitude + 0.01 %>",
-	    longitude: "<%= Runner.find(1).longitude + 0.01 %>",
+	    latitude: "<%= Runner.find(1).latitude + 0.0001 %>",
+	    longitude: "<%= Runner.find(1).longitude + 0.0001 %>",
 	    _method: 'put'
 	  }
 	});
 
   $.when(saveRunnersLocation).done(function() {
+
+    console.log("Updated runners location, lat: <%= Runner.find(1).latitude%>, lon: <%= Runner.find(1).longitude%>");
 
     //remove old marker with old location
     clearMarkers();
@@ -63,6 +65,16 @@ setTimeout(function(){
     addRunnerMarker(location);
     //add route line
     addLine(location);
+
+    //infoWindow
+
+    // var contentString = "<%= Runner.find(1).first_name%>"
+    // var infowindow = new google.maps.InfoWindow({
+    //   content: contentString
+    // });
+    // google.maps.event.addListener(findRunner.markers[findRunner.markers.length], 'click', function() {
+    //     infowindow.open(findRunner.map, marker);
+    // });
 
   });
 
