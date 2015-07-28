@@ -1,1 +1,74 @@
-$('#show-markers').html("<%= escape_javascript render('markers') %>");
+//FUNCTIONS 
+
+
+// Sets the map on all markers in the array.
+function setAllMap(map) {
+  for (var i = 0; i < findRunner.markers.length; i++) {
+    findRunner.markers[i].setMap(map);
+  }
+};
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  setAllMap(null);
+};
+
+// Create new runner marker and push to array
+function addRunnerMarker(location) {
+  var updatedPosition = new google.maps.Marker({
+    position: location,
+    map: findRunner.map,
+    icon: "https://s3-us-west-2.amazonaws.com/findyourrunner/runner_icon.png"
+  });
+  findRunner.markers.push(updatedPosition);
+};
+
+
+function addLine(location) {
+
+  var path = poly.getPath();
+
+  // Because path is an MVCArray, we can simply append a new coordinate
+  // and it will automatically appear.
+  path.push(location);
+}
+
+
+// EVERY 1min update lat and long
+
+setTimeout(function(){
+
+	var saveRunnersLocation = $.ajax({
+	  url: '/runners/1',
+	  type: "put",
+	  dataType: "script",
+	  data: { 
+	    latitude: "<%= Runner.find(1).latitude + 0.01 %>",
+	    longitude: "<%= Runner.find(1).longitude + 0.01 %>",
+	    _method: 'put'
+	  }
+	});
+
+  $.when(saveRunnersLocation).done(function() {
+
+    //remove old marker with old location
+    clearMarkers();
+
+    //set lat and lon for new marker
+    var lat = "<%= Runner.find(1).latitude%>";
+    var lng = "<%= Runner.find(1).longitude%>";
+    var location = new google.maps.LatLng(lat, lng);
+
+    //create new marker with updated location 
+    addRunnerMarker(location);
+    //add route line
+    addLine(location);
+
+  });
+
+
+},10000);
+
+
+
+  

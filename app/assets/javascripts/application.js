@@ -33,24 +33,21 @@ findRunner.loadMap = function(lat, lng) {
 
   findRunner.map = new google.maps.Map(mapCanvas, mapOptions);
 
+  var polyOptions = {
+      strokeColor: '#000000',
+      strokeOpacity: 1.0,
+      strokeWeight: 3
+    };
+    
+  poly = new google.maps.Polyline(polyOptions);
+  poly.setMap(findRunner.map);
+
 }; 
 
 
 //load Runner Markers
-findRunner.loadRunners = function(lat, lng, icon_url) {
 
-
-  findRunner.runner = new google.maps.Marker({
-    position: new google.maps.LatLng(lat, lng),
-    map: findRunner.map, // notice how we pass it the map we made earlier? This is how it knows which map to put the marker on
-    icon : icon_url,
-    title: 'Hello World!'
-  });
-  
-
-};
-
-
+findRunner.markers = [];
 
 
 $(function() {

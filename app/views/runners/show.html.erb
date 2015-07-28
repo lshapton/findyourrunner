@@ -3,36 +3,3 @@
     <%= render 'markers' %>
   </div>
 </div>
-
-<script>
-
-$(function() {
-  // Update runner's position every 5 min
-
-  function updatePosition() {
-  //do your AJAX stuff here
-    $.ajax({
-      url: '/runners/1',
-      type: "put",
-      dataType: "script",
-      data: { 
-        latitude: "<%= Runner.find(1).latitude + 1 %>",
-        longitude: "<%= Runner.find(1).longitude + 1 %>",
-        _method: 'put'
-      }
-    });
-  };
-
-  navigator.geolocation.getCurrentPosition(function(position) {
-
-    var updateRunnerLocation = setInterval(function() {
-
-      updatePosition();
-
-    }, 5000);
-
-  });
-
-});
-  
-</script>
