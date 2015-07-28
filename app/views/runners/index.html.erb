@@ -1,22 +1,28 @@
-<div id="show-map">
 
-  <%= render 'map' %>
-
+<div class="map">
+  <div id="show-markers">
+    <%= render 'markers' %>
+  </div>
 </div>
 
-<script>
+<div class="content">
+	<h2>Find Your Runner</h2>
 
-  $(function() {
+<!-- 	<h4 class="location">
+    <i class="fa fa-map-marker"></i>
+		<span>Enter location</span>
+	</h4> -->
 
-    findRunner.loadRunners("<%= @runner.latitude %>", "<%= @runner.longitude %>", "<%= @runner.icon_url %> "); 
-
-    var showRunnerLocation = setInterval(function() {
-      findRunner.loadRunners("<%= @runner.latitude %>", "<%= @runner.longitude %>", "<%= @runner.icon_url %> ");     
-      console.log("showed runners locations");
-    }, 1000000);
-
-    console.log("reload map");
-
-  });
-
-</script>
+  <%= form_for(@user) do |f| %>
+  	<h4 class="select-runner form-group">
+      <i class="fa fa-user"></i>
+      <span>Select runner</span>
+      <span>
+        <%= f.select :runner_ids, @runners.collect { |x| [x.name, x.id] }, {}, :multiple => true %>
+      </span>
+  	</h4>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %> 
+</div>

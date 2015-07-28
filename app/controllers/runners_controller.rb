@@ -6,6 +6,7 @@ class RunnersController < ApplicationController
   def index
     @runners = Runner.all
     @runner = Runner.find(1)
+    @user = current_user
   end
 
   # GET /runners/1
